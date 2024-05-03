@@ -30,15 +30,13 @@ int main() {
       s += a[i] - a[i - 1];
     }
 
-    for (size_t i = 1; i < n; i++) {
+    for (size_t i = 1; i < n; i++)
       s += a[n + i] - a[n + i - 1];
-    }
 
     cout << s << endl;
 
-    for (size_t i = 0; i < n; i++) {
+    for (size_t i = 0; i < n; i++)
       cout << a[n + i] << ' ' << a[i] << endl;
-    }
   }
 
   return 0;

@@ -18,10 +18,9 @@ int main() {
       na += ch == 'A';
       nb += ch == 'B';
     }
-    if (na > nb) {
+    if (na > nb)
       cout << 'A' << endl;
-    } else {
+    else
       cout << 'B' << endl;
-    }
   }
 }
