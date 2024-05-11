@@ -19,8 +19,7 @@ void solve() {
   for (int i = a; i <= b; i++)
     h1.insert(i);
 
-  // c d
-  if (h1.count(c) != !h1.count(d))
+  if (h1.count(c) ^ !h1.count(d))
     cout << "NO\n";
   else
     cout << "YES\n";

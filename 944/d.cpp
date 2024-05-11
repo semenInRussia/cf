@@ -35,12 +35,9 @@ void solve() {
   reverse(prts.begin(), prts.end());
   if (prts.back() == 0) {
     prts.pop_back();
-    if (prts.empty())
-      ans = 1;
-    else {
+    if (!prts.empty())
       prts.pop_back();
-      ans = 1 + (int)prts.size();
-    }
+    ans = 1 + (int)prts.size();
   } else {
     prts.pop_back(), ans = 1; // pop 1
     if (!prts.empty()) {      // pop 0
