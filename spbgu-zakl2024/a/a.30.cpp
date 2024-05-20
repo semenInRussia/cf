@@ -32,7 +32,8 @@ int solve(int beg) {
   vector<int> p(n + 1 + beg, 0);
   p[beg] = 1;
   for (int i = beg + 1; i <= n + beg; i++) {
-    p[i] = at(p, i - a) * !at(seen, i - a) + at(p, i - b) * !at(seen, i - b);
+    p[i] = at(p, i - a) * !at(seen, i - a) //
+           + at(p, i - b) * !at(seen, i - b);
     p[i] *= !seen[i];
   }
 
@@ -45,8 +46,7 @@ int main() {
 
   for (int i = 0; i < n; i++) {
     ans += solve(i);
-    seen[i] = 1;
-    seen[i + n] = 1;
+    seen[i] = 1, seen[i + n] = 1;
   }
 
   cout << ans << endl;

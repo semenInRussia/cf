@@ -15,9 +15,8 @@ int main() {
 
   vector<size_t> elems(k);
 
-  for (auto &el : elems) {
+  for (auto &el : elems)
     cin >> el;
-  }
 
   for (size_t i = 0; i < n; i++) {
     cout.flush();

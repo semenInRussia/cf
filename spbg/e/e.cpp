@@ -12,26 +12,22 @@ inline size_t trim(const size_t x, const size_t mod) noexcept {
 }
 
 int main() {
-  size_t n, x, y;
+  int n, x, y;
   cin >> n >> x >> y;
 
-  size_t res = 1;
-  const size_t mod = pow(10, n);
+  int res = 1;
+  const int mod = pow(10, n);
+  map<int, int> seen, pow;
 
-  // a[i] = x^i
-  // a[x^i] = i
-  map<size_t, size_t> seen;
-  map<size_t, size_t> pow;
-
-  for (size_t i = 1; i <= y; i++) {
+  for (int i = 1; i <= y; i++) {
     res *= x;
 
     while (res >= mod)
       res = trim(res, mod);
 
     if (seen.count(res)) {
-      const size_t prev_i = seen[res];
-      const size_t cycl = i - prev_i;
+      const int prev_i = seen[res];
+      const int cycl = i - prev_i;
       res = pow[prev_i + (y - i) % cycl];
       // wtf???
       break;
@@ -41,5 +37,5 @@ int main() {
     pow[i] = res;
   }
 
-  cout << res << endl;
+  cout << res;
 }

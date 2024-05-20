@@ -1,10 +1,6 @@
 // Copyright 2024 semenInRussia
-
 #include <iostream>
-#include <numeric>
-#include <set>
 #include <vector>
-
 using namespace std;
 
 void solve() {
@@ -14,18 +10,15 @@ void solve() {
   for (auto &x : b)
     cin >> x;
 
-  // b[l] + b[m] + b[r] - (r - l)
-  // (b[r] - r) + b[m] + (b[l] + l)
-
   const int INF = 1e8;
-  vector<int> pl(n, -INF), pr(n, -INF);
+  vector<int> p(n, -INF), s(n, -INF);
   for (int i = 0; i < n - 1; i++)
-    pl[i + 1] = max(pl[i], b[i] + i);
+    p[i + 1] = max(p[i], b[i] + i);
   for (int i = n - 1; i > 0; i--)
-    pr[i - 1] = max(pr[i], b[i] - i);
-  int ans = 0;
+    s[i - 1] = max(s[i], b[i] - i);
+  int ans = -1;
   for (int m = 1; m < n - 1; m++)
-    ans = max(ans, pl[m] + b[m] + pr[m]);
+    ans = max(ans, p[m] + b[m] + s[m]);
   cout << ans << endl;
 }
 

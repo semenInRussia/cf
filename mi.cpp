@@ -18,7 +18,10 @@ const int MOD = 1e9 + 7;
 using ll = long long;
 struct mi {
   ll v;
-  mi(ll x = 0) : v(x % MOD) {} // initialize using integer
+  mi(ll x = 0) : v(x % MOD) {
+    if (x < 0)
+      v += MOD;
+  } // initialize using integer
   explicit operator ll() { return v; }
 };
 mi operator+(mi a, mi b) { return mi(a.v + b.v); }
