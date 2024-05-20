@@ -6,4 +6,4 @@
 
 Последнюю я прям жоско думал, было приятно
 
-https://codeforces.com/contests/1974
+https://codeforces.com/contest/1974
