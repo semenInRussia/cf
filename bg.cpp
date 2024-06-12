@@ -13,9 +13,6 @@ void dfs(int a, int b, int c, int d, ll acc = 0) {
     return;
   }
 
-  if ((a + c) % 2 + ((b + c) % 2) + (d % 2) == 0)
-    acc++;
-
   dfs(a - 1, b, c, d, acc);
   dfs(a, b - 1, c, d, acc);
   dfs(a, b, c - 1, d, acc);
