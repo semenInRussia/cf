@@ -23,7 +23,7 @@ int main() {
   vector<int> dp(s + 1);
   dp[0] = 1;
   for (int i = 0; i < n; ++i)
-    for (int j = s - a[i]; j >= 0; --j)
+    for (int j = size_t(s - a[i]); j >= 0; --j)
       dp[j + a[i]] = add(dp[j + a[i]], dp[j]);
   int ans = 0;
   for (int j = 0; j <= s; ++j)

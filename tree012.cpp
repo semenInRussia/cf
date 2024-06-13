@@ -1,11 +1,8 @@
-#include <cstdio>
+// semenInRussia 2024
 #include <iostream>
 using namespace std;
 
 int main() {
-#ifndef ONLINE_JUDGE
-  freopen("input.txt", "r", stdin);
-#endif
   int tt;
   cin >> tt;
   while (tt--) {
@@ -13,37 +10,17 @@ int main() {
     cin >> a >> b >> c;
     int h = 0;
     while (a >= (1 << h))
-      h++, a -= (1 << h);
-
-    int e = (1 << h);
-    e -= a;
-    h++;
-    if (b >= e)
-      e = 0, b -= e;
-    else
-      e -= b, b = 0;
-    if (e)
-      c -= min(c, e);
-    e = (1 << h) + a;
-    int dif = 0;
-    while (b) {
-      dif = e - b;
-      b -= min(b, e);
-      h++;
-    }
-    int oldc = c;
-    c -= min(dif, c);
-    e -= min(e, oldc);
-    while (c && e) {
-      oldc = c;
-      c -= min(c, e);
-      e -= min(e, oldc);
-      h++;
-    }
-    if (!e && c)
+      a -= (1 << h), h++;
+    int r = (1 << h) - a;
+    int v = min(b, r);
+    b -= v, r -= v;
+    int e = (1 << h) + a;
+    r = b % e;
+    h += (b + e - 1) / e;
+    if (c != e)
       h = -1;
-    if (h > 0)
-      h--;
+    else if (c > r)
+      h++;
     cout << h << '\n';
   }
 }
