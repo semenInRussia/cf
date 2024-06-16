@@ -9,7 +9,6 @@ using namespace std;
 #include <algorithm>
 #include <iostream>
 #include <unordered_set>
-#include <vector>
 
 using uset = unordered_set<int>;
 
@@ -30,7 +29,6 @@ void dfs(int v, int p = -1) {
   seen[v] = true;
   tin[v] = fup[v] = ++t;
   int children = 0;
-  fup[v].pus
   for (auto u : g[v]) {
     if (u == p)
       continue;
