@@ -27,12 +27,9 @@ bool check(int k) {
 
   // count string occurrences
   int cnt = 0;
-  for (int i = k + 1; i < m; i++) {
-    if (pi[i] == k) {
-      cnt++;
-      i += k - 1;
-    }
-  }
+  for (int i = k + 1; i < m; i++)
+    if (pi[i] == k)
+      cnt++, i += k - 1;
 
   return cnt >= l;
 }

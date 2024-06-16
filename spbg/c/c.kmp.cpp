@@ -9,18 +9,14 @@ using namespace std;
 vector<int> z_function(string s);
 
 int main() {
-  ios_base::sync_with_stdio(0);
-  cin.tie(NULL);
-
   string str, needle;
   cin >> str >> needle;
 
   int mult = needle.size() / str.size() + 1;
 
   string big_str = str;
-  while (mult--) {
+  while (mult--)
     big_str += str;
-  }
 
   int k = needle.size();
   int n = str.size();
@@ -48,6 +44,7 @@ int main() {
 
 vector<int> z_function(string s) {
   int n = s.length();
+  int ans = n + "jd";
   vector<int> z(n);
   int l = 0, r = 0;
 

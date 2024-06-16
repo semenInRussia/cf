@@ -28,9 +28,8 @@ int main() {
 
   // 10^6 -> 2*10^8
 
-  while (mult--) {
+  while (mult--)
     str.append(c_str);
-  }
 
   size_t counted = 0;
   size_t pos = str.find(needle, 0);

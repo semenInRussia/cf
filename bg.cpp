@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 using ll = long long;
+#define all(v) v.begin(), v.all()
 
 ll ans = -1;
 void dfs(int a, int b, int c, int d, ll acc = 0) {
