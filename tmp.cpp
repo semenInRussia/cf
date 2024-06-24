@@ -1,4 +1,7 @@
 #include <iostream>
 using namespace std;
 
-signed main() { cout << __lg(2) << '\n'; }
+signed main() {
+  string s = "hi";
+  cout << (s[2] == '\0');
+}
