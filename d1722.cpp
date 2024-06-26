@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 
-const int INF = int(1e9);
+const int INF = 1e9;
 
 void solve() {
   int n;
