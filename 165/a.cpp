@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <set>
-#include <vector>
 
 using namespace std;
 
@@ -15,20 +14,19 @@ void solve() {
   int n;
   cin >> n;
   set<pii> m;
-  int i = 1;
+  int i = 1, ans = 3;
   for (int z = 0; z < n; z++) {
     int x;
     cin >> x;
     if (m.count({x, i}) || m.count({i, x})) {
-      cout << "2\n";
-      return;
+      ans = 2;
     }
     m.insert({x, i});
     m.insert({i, x});
     i++;
   }
 
-  cout << "3\n";
+  cout << ans << "\n";
 }
 
 int main() {
