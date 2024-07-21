@@ -27,74 +27,64 @@ void recompute(int g) {
 ll qry(int l, int r) {
   int gl = group(l), gr = group(r);
   ll ans = 0;
-  recompute(gl);
   if (gl == gr) {
+    recompute(gl);
     for (int i = l; i < r; i++)
       ans += a[i];
     return ans;
   }
+  recompute(gl), recompute(gr);
   for (int i = l; i < (gl + 1) * G; i++)
-    ans += a[i];
-  recompute(gr);
-  for (int i = gr * G; i < r; i++)
     ans += a[i];
   for (int g = gl + 1; g < gr; g++)
     ans += sm[g];
+  for (int i = gr * G; i < r; i++)
+    ans += a[i];
   return ans;
 }
 
 void inc(int l, int r, ll v) {
   int gl = group(l), gr = group(r);
-  //
-  recompute(gl);
   if (gl == gr) {
-    for (int i = l; i < r; i++) {
+    recompute(gl);
+    for (int i = l; i < r; i++)
       a[i] += v;
-      sm[gl] += v;
-    }
+    recompute(gl);
     return;
   }
 
-  for (int i = l; i < (gl + 1) * G; i++) {
+  recompute(gl), recompute(gr);
+  for (int i = l; i < (gl + 1) * G; i++)
     a[i] += v;
-    sm[gl] += v;
-  }
+  for (int i = gr * G; i < r; i++)
+    a[i] += v;
+  recompute(gl), recompute(gr);
   for (int g = gl + 1; g < gr; g++) {
     add[g] += v;
     sm[g] += v * G;
-  }
-  recompute(gr);
-  for (int i = gr * G; i < r; i++) {
-    a[i] += v;
-    sm[gr] += v;
   }
 }
 
 void change(int l, int r, ll v) {
   int gl = group(l), gr = group(r);
-  //
-  recompute(gl);
   if (gl == gr) {
-    for (int i = l; i < r; i++) {
-      sm[gl] += v - a[i];
+    recompute(gl);
+    for (int i = l; i < r; i++)
       a[i] = v;
-    }
+    recompute(gl);
     return;
   }
 
-  for (int i = l; i < (gl + 1) * G; i++) {
-    sm[gl] += v - a[i];
+  recompute(gl), recompute(gr);
+  for (int i = l; i < (gl + 1) * G; i++)
     a[i] = v;
-  }
+  for (int i = gr * G; i < r; i++)
+    a[i] = v;
+  recompute(gl), recompute(gr);
   for (int g = gl + 1; g < gr; g++) {
     assign[g] = v;
     add[g] = 0;
     sm[g] = v * G;
-  }
-  recompute(gr);
-  for (int i = gr * G; i < r; i++) {
-    sm[gr] += v - a[i];
-    a[i] = v;
   }
 }
 
