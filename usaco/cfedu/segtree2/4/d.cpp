@@ -1,87 +1,83 @@
 // semenInRussia 2024
+#pragma GCC optimize("Ofast,unroll-loops")
+#include <algorithm>
+#include <ios>
 #include <iostream>
+#include <vector>
 using namespace std;
 using ll = long long;
 
-struct node {
-  int len = 1;
-  ll ans, sum, lazy;
+struct query {
+  int l, r, idx;
 };
+bool operator<(query a, query b) { return a.r < b.r; }
 
-int n;
-const int N = 1 << 17;
-node t[2 * N];
-int a[N];
+const int N = 2e5, C = 448, A = 1e6 + 100;
+int a[N], cnt[A];
+ll answers[N];
+vector<query> b[N / C + 1];
 
-void upd(node &x, int v) {
-  x.lazy += v;
-  x.sum += 1ll * x.len * v;
-  ll a = v, b = 1ll * x.len * v;
-  x.ans += (a + b) * 1ll * x.len / 2;
-}
-void push(int x, int len) {
-  if (len > 1 && t[x].lazy) {
-    ll v = t[x].lazy;
-    upd(t[x * 2 + 1], v);
-    upd(t[x * 2 + 2], v);
-    t[x].lazy = 0;
+ll ans = 0;
+vector<int> els;
+bool used[A];
+void add(int i) {
+  int s = a[i];
+  if (!used[s]) {
+    els.push_back(s);
+    used[s] = true;
   }
+
+  int ks = cnt[s];
+  ans -= 1ll * ks * ks * s;
+  cnt[s]++;
+  ks++;
+  ans += 1ll * ks * ks * s;
 }
 
-node combine(node a, node b) {
-  return {a.len + b.len, a.ans + b.ans + b.sum * a.len, a.sum + b.sum, 0};
-}
-
-void build(int x = 0, int l = 0, int r = N) {
-  if (r - l == 1) {
-    t[x] = {1, 0, 0, 0};
-    if (l < n)
-      t[x] = {1, a[l], a[l], 0};
-    return;
-  }
-  int m = (l + r) / 2;
-  build(x * 2 + 1, l, m);
-  build(x * 2 + 2, m, r);
-  t[x] = combine(t[x * 2 + 1], t[x * 2 + 2]);
-}
-
-node qry(int ql, int qr, int x = 0, int l = 0, int r = N) {
-  if (l >= qr || r <= ql)
-    return {0, 0, 0, 0};
-  if (l >= ql && r <= qr)
-    return t[x];
-  push(x, r - l);
-  int m = (l + r) / 2;
-  return combine(qry(ql, qr, x * 2 + 1, l, m), qry(ql, qr, x * 2 + 2, m, r));
-}
-
-void update(int ql, int qr, int v, int x = 0, int l = 0, int r = N) {
-  if (l >= qr || r <= ql)
-    return;
-  if (l >= ql && r <= qr) {
-    upd(t[x], v);
-    return;
-  }
-  push(x, r - l);
-  int m = (l + r) / 2;
-  update(ql, qr, v, x * 2 + 1, l, m);
-  update(ql, qr, v, x * 2 + 2, m, r);
-  t[x] = combine(t[x * 2 + 1], t[x * 2 + 2]);
+void rem(int i) {
+  int s = a[i];
+  int ks = cnt[s];
+  ans -= 1ll * ks * ks * s;
+  cnt[s]--;
+  ks--;
+  ans += 1ll * ks * ks * s;
 }
 
 int main() {
-  ios::sync_with_stdio(0), cin.tie(0);
-  int m;
-  cin >> n >> m;
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+  int n, t;
+  cin >> n >> t;
   for (int i = 0; i < n; i++)
     cin >> a[i];
-  build();
-  while (m--) {
-    int t, l, r, d;
-    cin >> t >> l >> r;
-    if (t == 1)
-      cin >> d, update(l - 1, r, d);
-    else
-      cout << qry(l - 1, r).ans << '\n';
+  for (int i = 0; i < t; i++) {
+    query q;
+    cin >> q.l >> q.r;
+    q.l--;
+    q.idx = i;
+    b[q.l / C].push_back(q);
   }
+  for (int g = 0; g * C <= n; g++) {
+    if (b[g].empty())
+      continue;
+    sort(b[g].begin(), b[g].end());
+    ans = 0;
+    int l = b[g][0].l, r = b[g][0].r;
+    for (int i = l; i < r; i++)
+      add(i);
+    for (auto q : b[g]) {
+      while (l > q.l)
+        add(--l);
+      while (l < q.l)
+        rem(l++);
+      while (r < q.r)
+        add(r++);
+      answers[q.idx] = ans;
+    }
+    for (auto s : els)
+      used[s] = cnt[s] = 0;
+    els.clear();
+  }
+  for (int i = 0; i < t; i++)
+    cout << answers[i] << '\n';
 }
