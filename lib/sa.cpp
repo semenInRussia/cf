@@ -18,10 +18,6 @@ void sufarr(string &s) {
   for (int i = 1; i < n; i++)
     c[sa[i]] = c[sa[i - 1]] + (s[sa[i]] != s[sa[i - 1]]);
 
-  c[sa[0]] = 0;
-  for (int i = 1; i < n; i++)
-    c[sa[i]] = c[sa[i - 1]] + (s[sa[i]] != s[sa[i - 1]]);
-
   vector<int> b[maxn];
   for (int len = 1; len < n; len *= 2) {
     for (int i = 0; i < n; i++)
