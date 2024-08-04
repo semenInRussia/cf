@@ -6,16 +6,16 @@
 
 #pragma GCC optimize("unroll-loops,Ofast")
 using namespace std;
-const int N = 1e5 + 100, K = 315;
-int a[N], answers[N], cnt[N];
+const int M = 1e5 + 100, K = 315;
+int a[M], answers[M], cnt[M];
 struct query {
   int l, r, idx;
 };
-vector<query> b[(N / K) + 1];
+vector<query> b[(M / K) + 1];
 
 int ans = 0;
 void add(int i) {
-  if (a[i] >= N)
+  if (a[i] >= M)
     return;
   if (cnt[a[i]] == a[i])
     ans--;
@@ -24,7 +24,7 @@ void add(int i) {
     ans++;
 }
 void rem(int i) {
-  if (a[i] >= N)
+  if (a[i] >= M)
     return;
   if (cnt[a[i]] == a[i])
     ans--;
