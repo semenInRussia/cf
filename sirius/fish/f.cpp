@@ -1,0 +1,139 @@
+// semenInRussia 2024
+#include <algorithm>
+#include <cassert>
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+using ll = vector<int>;
+
+const int base = 1e9;
+void operator+=(ll &a, ll &b) {
+  int len = int(max(a.size(), b.size()));
+  int c = 0;
+  for (int i = 0; i < len || c; i++) {
+    if (i == int(a.size()))
+      a.push_back(0);
+    a[i] += (i < b.size() ? b[i] : 0) + c;
+    c = 0;
+    if (a[i] >= base)
+      a[i] -= base, c = 1;
+  }
+}
+
+void print(ll x) {
+  x.push_back(0);
+  while (x.size() > 1 && x.back() == 0)
+    x.pop_back();
+  printf("%d", x.back());
+  for (int i = int(x.size()) - 2; i >= 0; i--)
+    printf("%09d", x[i]);
+}
+
+// N is size of alphabet
+const int TRIE_SZ = 800, N = 120;
+int sz = 0;
+
+struct node {
+  int to[N], go[N];
+  int link = -1, p = -1, out = -1;
+  char ch = -1;
+
+  node(char ch = -1, int p = -1) : p(p), ch(ch) {
+    fill(to, to + N, -1);
+    fill(go, go + N, -1);
+  }
+};
+
+node t[TRIE_SZ];
+
+int add(string &s) {
+  int v = 0;
+  for (auto ch : s) {
+    if (t[v].to[ch] == -1) {
+      t[v].to[ch] = sz;
+      t[sz++] = node(ch, v);
+    }
+    v = t[v].to[ch];
+  }
+  t[v].out = 1;
+  return v;
+}
+
+int go(int v, char ch);
+
+int link(int v) {
+  node &e = t[v];
+  int &lnk = e.link;
+  if (lnk != -1)
+    return lnk;
+  if (e.p == 0 || v == 0)
+    return lnk = 0;
+  return lnk = go(link(e.p), e.ch);
+}
+
+int go(int v, char ch) {
+  assert(ch <= N);
+  node &e = t[v];
+  int &res = e.go[ch];
+  if (res != -1)
+    return res;
+  if (e.to[ch] != -1)
+    return res = e.to[ch];
+  if (v == 0)
+    return res = 0;
+  return res = go(link(v), ch);
+}
+
+bool out(int v) {
+  node &e = t[v];
+  if (e.out != -1 || v == 0)
+    return e.out;
+  return e.out = out(link(v));
+}
+
+ll f[TRIE_SZ], f2[TRIE_SZ];
+
+int main() {
+  t[0].out = 0;
+  sz = 1;
+
+  int n, m, p;
+  cin >> n >> m >> p;
+
+  string alph;
+  cin.ignore(1);
+  getline(cin, alph);
+  sort(alph.begin(), alph.end());
+  assert(int(alph.size()) == n);
+
+  string w;
+  for (int i = 0; i < p; i++) {
+    getline(cin, w);
+    for (auto &ch : w)
+      ch = lower_bound(alph.begin(), alph.end(), ch) - alph.begin();
+    add(w);
+  }
+
+  f[0] = {1};
+  for (int i = 0; i < m; i++) {
+    for (int i = 0; i < sz; i++)
+      f2[i].clear();
+    for (int x = 0; x < sz; x++) {
+      if (out(x))
+        continue;
+      for (char c = 0; c < n; c++) {
+        int y = go(x, c);
+        if (!out(y))
+          f2[y] += f[x];
+        assert(y < sz);
+      }
+    }
+    swap(f2, f);
+  }
+  ll ans = {0};
+  for (int x = 0; x < sz; x++)
+    ans += f[x];
+  print(ans);
+}
