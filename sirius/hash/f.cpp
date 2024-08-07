@@ -8,7 +8,6 @@ int p[N], h[N];
 int main() {
   string s;
   cin >> s;
-
   for (auto &ch : s)
     ch = ch - 'a' + 1;
 

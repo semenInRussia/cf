@@ -46,8 +46,8 @@ int main() {
       ull s2 = (th1[i + k] - th1[i]) * tp[n - i];
       subs.push_back({s1, s2});
     }
-    sort(subs.begin(), subs.end());
 
+    sort(subs.begin(), subs.end());
     for (int i = 0; i + k <= n; i++) {
       int s1 = 1ll * (h2[i + k] - h2[i] + mod) * p[n - i] % mod;
       ull s2 = (th2[i + k] - th2[i]) * tp[n - i];
