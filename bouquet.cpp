@@ -4,10 +4,8 @@
 #include <iostream>
 using namespace std;
 using ll = long long;
-using pii = pair<int, int>;
-
 const int N = 3e5;
-pii p[N]; // {a, c}
+pair<ll, ll> p[N]; // {a, c}
 const int C = 5000;
 
 int main() {
@@ -22,28 +20,25 @@ int main() {
       cin >> p[i].first;
     for (int i = 0; i < n; i++)
       cin >> p[i].second;
-
     sort(p, p + n);
+    p[n] = {-1, -1};
 
     ll ans = 0;
-    for (int i = 1; i < n; i++) {
-      auto [a1, c1] = p[i - 1];
-      auto [a2, c2] = p[i];
+    for (int i = 0; i < n; i++) {
+      auto [a1, c1] = p[i];
+      auto [a2, c2] = p[i + 1];
 
-      if (a2 - a1 != 1)
-        a1 = 0, c1 = 0;
-
-      if (a1 > a2) {
-        swap(a1, a2);
-        swap(c1, c2);
-      }
-
-      ll g = min((ll)c2, m / a2);
-      for (ll i = 0; i <= g; i++) {
-        ll cur = i * a2;
-        cur += 1ll * min((m - i * a2) / a1, 1ll * c1) * a1;
+      if (a2 != a1 + 1) {
+        ll cur = min(c1, m / a1) * a1;
         ans = max(ans, cur);
+        continue;
       }
+
+      ll x = min(c1, m / a1);
+      ll y = min(c2, (m - x * a1) / a2);
+      ll add = min({x, c2 - y, (m - x * a1) % a2});
+      ll cur = (x * a1) + (y * a2) + add;
+      ans = max(cur, ans);
     }
     cout << ans << '\n';
   }
