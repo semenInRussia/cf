@@ -18,13 +18,13 @@ pii e[2 * N];      // { height[x], x }
 pii spe[K][2 * N]; // sparse table for `e`
 
 int t = 0;
-void dfs(int x, int p = -1) {
+void dfs2(int x, int p = -1) {
   h[x] = (p == -1 ? 0 : h[p] + 1);
   tin[x] = t;
   e[t++] = {h[x], x};
   for (int y : g[x]) {
     if (y != p) {
-      dfs(y, x);
+      dfs2(y, x);
       e[t++] = {h[x], x};
     }
   }
@@ -54,7 +54,7 @@ int main() {
     g[b].push_back(a);
   }
   red[0] = 1;
-  dfs(0, -1);
+  dfs2(0, -1);
   for (int x = 0; x < n; x++)
     d[x] = h[x];
 
