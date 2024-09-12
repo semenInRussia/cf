@@ -34,35 +34,28 @@ void dfs2(int x, int num) {
   }
 }
 
-int n, m;
-inline int notx(int x) {
-  if (x < m)
-    x += m;
-  else
-    x -= m;
-  return x;
-}
-
 int main() {
+  int n, m;
   cin >> n >> m;
   for (int i = 0; i < n; i++) {
     int a, b;
     char ap, bp;
     cin >> ap >> a >> bp >> b;
     a--, b--;
+    a <<= 1, b <<= 1;
 
     if (ap == '-') {
-      a = notx(a);
+      a ^= 1;
     }
     if (bp == '-') {
-      b = notx(b);
+      b ^= 1;
     }
 
     // we have condition a || b
     // : !a => b
     // : !b => a
-    g[notx(a)].push_back(b);
-    g[notx(b)].push_back(a);
+    g[a ^ 1].push_back(b);
+    g[b ^ 1].push_back(a);
   }
 
   // build t[] - inverted g[]
@@ -91,8 +84,9 @@ int main() {
 
   // for every x < m, check that not(a) and a located in different components
   bool ok = 1;
-  for (int x = 0; x < m && ok; x++) {
-    if (comp[x] == comp[notx(x)]) {
+  for (int i = 0; i < m && ok; i++) {
+    int x = i << 1;
+    if (comp[x] == comp[x ^ 1]) {
       ok = 0;
     }
   }
@@ -102,8 +96,9 @@ int main() {
   }
 
   // answer (- + -)
-  for (int x = 0; x < m; x++) {
-    int a = comp[x] > comp[notx(x)];
+  for (int i = 0; i < m; i++) {
+    int x = i << 1;
+    int a = comp[x] > comp[x ^ 1];
     cout << "-+"[a] << ' ';
   }
 }
