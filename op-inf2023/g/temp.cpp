@@ -4,5 +4,6 @@
 #include <iostream>
 
 using namespace std;
+using ll = long long;
 
-int main() {}
+int main() { cout << __lg(ll(3e9)); }
