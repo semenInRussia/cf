@@ -37,7 +37,7 @@ struct hstring {
   }
 
   void chop_prefix(hstring pref) {
-    assert(pref.len <= len);
+        assert(pref.len <= len);
     normalize(pref);
     hsh = (hsh - pref.hsh + mod) % mod;
     len -= pref.len;

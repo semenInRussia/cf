@@ -1,7 +1,10 @@
 /.vscode/
+/.vs/
+CppProperties.json
 /a
 /a.out
 a.exe
 *.out
 /mi
 /tmp
+

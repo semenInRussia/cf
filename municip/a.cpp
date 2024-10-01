@@ -5,9 +5,9 @@ using namespace std;
 int main() {
   int h, m;
   scanf("%d:%d", &h, &m);
-  int h2, m2;
+    int h2, m2;
   scanf("%d:%d", &h2, &m2);
-
+  
   int h3 = 24 - h + h2;
   int m3 = m2 - m;
   if (m3 < 0) {
