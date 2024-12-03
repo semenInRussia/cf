@@ -14,19 +14,19 @@ void setIO(string s) {
   freopen((s + ".out").c_str(), "w", stdout);
 }
 
-struct mi {
+struct mi2 {
   int v;
   explicit operator int() const { return v; }
-  mi(ll _v) : v(_v % MOD) { v += (v < 0) * MOD; }
-  mi() : mi(0) {}
+  mi2(ll _v) : v(_v % MOD) { v += (v < 0) * MOD; }
+  mi2() : mi2(0) {}
 };
-mi operator+(mi a, mi b) { return mi(a.v + b.v); }
-mi operator-(mi a, mi b) { return mi(a.v - b.v); }
-mi operator*(mi a, mi b) { return mi((ll)a.v * b.v); }
+mi2 operator+(mi2 a, mi2 b) { return mi2(a.v + b.v); }
+mi2 operator-(mi2 a, mi2 b) { return mi2(a.v - b.v); }
+mi2 operator*(mi2 a, mi2 b) { return mi2((ll)a.v * b.v); }
 
 int N;
 vector<pair<int, int>> v;
-vector<mi> sum[100005];
+vector<mi2> sum[100005];
 vector<pair<int, int>> todo[20001];
 
 void check() {
@@ -34,7 +34,7 @@ void check() {
     if (todo[i].size() > 0) {
       int sz = todo[i].size();
       sort(begin(todo[i]), end(todo[i]));
-      mi cur = 0;
+      mi2 cur = 0;
       for (int j = 0; j < sz; ++j)
         cur = cur + todo[i][j].f - todo[i][0].f;
       for (int j = 0; j < sz; ++j) {
@@ -61,7 +61,7 @@ int main() {
   for (int i = 0; i < N; ++i)
     todo[v[i].s + 10000].push_back({v[i].f, i});
   check();
-  mi ans = 0;
+  mi2 ans = 0;
   for (int i = 0; i < N; ++i)
     ans = ans + sum[i][0] * sum[i][1];
   cout << ans.v << "\n";

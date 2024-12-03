@@ -56,15 +56,19 @@ void build() {
 }
 
 int main() {
-  string t;
-  cin >> s >> t;
-  m = int(s.size());
-  s += '#', s += t, s += '$';
-  n = int(s.size());
+  // string t;
+  // cin >> s >> t;
+  // m = int(s.size());
+  // s += '#', s += t, s += '$';
+  // n = int(s.size());
+  cin >> s;
   build();
-  pii ans{0, 0};
-  for (int i = 1; i < n; i++)
-    if ((p[i] < m) != (p[i - 1] < m))
-      ans = max(ans, {lcp[i], -i});
-  cout << s.substr(p[-ans.second], ans.first);
+  for (int i = 0; i < n; i++) {
+    cout << s.substr(p[i]) << "\n";
+  }
+  // pii ans{0, 0};
+  // for (int i = 1; i < n; i++)
+  //   if ((p[i] < m) != (p[i - 1] < m))
+  //     ans = max(ans, {lcp[i], -i});
+  // cout << s.substr(p[-ans.second], ans.first);
 }
