@@ -44,7 +44,7 @@ int main() {
 
 vector<int> z_function(string s) {
   int n = s.length();
-  int ans = n + "jd";
+  int ans = n;
   vector<int> z(n);
   int l = 0, r = 0;
 

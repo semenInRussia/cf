@@ -12,26 +12,26 @@ using ull = unsigned long long;
 #pragma GCC optimize("Ofast,unroll-loops")
 
 const int mod = 1e9 + 7;
-struct mi {
+struct mi2 {
   int x = 0;
-  mi(ll _x = 0) : x(_x % mod) { x += mod * (x < 0); }
-  mi operator+(mi o) { return mi(o.x + x); }
-  mi operator-(mi o) { return mi(x - o.x); }
-  mi operator*(int y) { return mi(1ll * x * y); }
-  mi operator*(mi y) { return mi(1ll * x * y.x); }
+  mi2(ll _x = 0) : x(_x % mod) { x += mod * (x < 0); }
+  mi2 operator+(mi2 o) { return mi2(o.x + x); }
+  mi2 operator-(mi2 o) { return mi2(x - o.x); }
+  mi2 operator*(int y) { return mi2(1ll * x * y); }
+  mi2 operator*(mi2 y) { return mi2(1ll * x * y.x); }
 };
-void operator+=(mi &x, mi y) { x = x + y; }
+void operator+=(mi2 &x, mi2 y) { x = x + y; }
 
 const int N = 508, C = 31;
 string t[N];
 vector<pii> d[C];
-mi a[N][N], b[N][N], p[N], pp[N];
+mi2 a[N][N], b[N][N], p[N], pp[N];
 ull ta[N][N], tb[N][N], tp[N], tpp[N];
 
 int n, m;
 pair<int, ull> qry(pii pos, int k) {
   auto [i, j] = pos;
-  mi h = b[i][j] - b[i][j + k] - b[i + k][j] + b[i + k][j + k];
+  mi2 h = b[i][j] - b[i][j + k] - b[i + k][j] + b[i + k][j + k];
   ull th = tb[i][j] - tb[i][j + k] - tb[i + k][j] + tb[i + k][j + k];
   return {
       (h * pp[n - i] * p[m - j]).x,
@@ -89,7 +89,7 @@ int main() {
   for (int i = 1; i <= m; i++)
     tp[i] = tp[i - 1] * C;
 
-  mi cc(1);
+  mi2 cc(1);
   ull tcc(1);
   for (int i = 0; i <= m; i++)
     cc += p[i] * ('z' - 'a' + 1);
