@@ -14,7 +14,11 @@ int get(int i) {
   return p[i] = get(p[i]);
 }
 
-int join(int a, int b) { return p[b] = a; }
+int join(int a, int b) {
+  b = get(b);
+  a = get(a);
+  return p[b] = a;
+}
 
 int main() {
   int n;
