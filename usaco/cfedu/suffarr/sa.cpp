@@ -15,26 +15,33 @@ vector<int> b[maxn];
 int c[maxn], sa[maxn], cn[maxn];
 
 void sufarr() {
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < n; i++) {
     sa[i] = i;
+  }
   sort(sa, sa + n, [](int i, int j) { return s[i] < s[j]; });
   c[sa[0]] = 0;
-  for (int i = 1; i < n; i++)
+  for (int i = 1; i < n; i++) {
     c[sa[i]] = c[sa[i - 1]] + (s[sa[i]] != s[sa[i - 1]]);
+  }
 
   for (int len = 1; len < n; len *= 2) {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) {
       sa[i] = (sa[i] - len + n) % n;
+    }
 
     // sort sa[] by c[]
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++) {
       b[i].clear();
-    for (int i = 0; i < n; i++)
+    }
+    for (int i = 0; i < n; i++) {
       b[c[sa[i]]].push_back(sa[i]);
+    }
     int m = 0;
-    for (int i = 0; i < n; i++)
-      for (int x : b[i])
+    for (int i = 0; i < n; i++) {
+      for (int x : b[i]) {
         sa[m++] = x;
+      }
+    }
 
     // build c[] again
     cn[sa[0]] = 0;
