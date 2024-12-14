@@ -3,9 +3,11 @@
 CppProperties.json
 /a
 /a.out
-a.exe
+*.exe
 *.out
 /mi
 /tmp
-/toff/
 
+/toff/
+inf-open/q2024/
+spbg/q2024
