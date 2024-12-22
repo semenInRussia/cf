@@ -6,21 +6,21 @@ using namespace std;
 
 #pragma GCC target("avx2")
 
-const int N = 1605;
-int a[N][N];
-int64_t b[N][N];
-
 int main() {
   cin.tie(nullptr)->sync_with_stdio(0);
 
   int n, m, A, B;
   cin >> n >> m >> A >> B;
 
+  vector<vector<int>> a(n, vector<int>(0, m));
+
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
       cin >> a[i][j];
     }
   }
+
+  vector<vector<int64_t>> b(n + 5, vector<int64_t>(0, m + 5));
 
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
@@ -29,6 +29,9 @@ int main() {
   }
 
   vector<int> s;
+
+  s.reserve(n * m * n * m);
+
   for (int i1 = 0; i1 < n; i1++) {
     for (int j1 = 0; j1 < m; j1++) {
       for (int i2 = i1 + 1; i2 <= n; i2++) {
@@ -51,6 +54,10 @@ int main() {
     if (i + 1 == int(s.size())) {
       continue;
     }
+
+    // A <= y + x <= B
+    // y <= B - x
+    // y >= A - x
 
     auto l = lower_bound(s.begin() + i + 1, s.end(), A - x);
     auto r = lower_bound(s.begin() + i + 1, s.end(), B - x + 1);

@@ -38,7 +38,7 @@ int main() {
   }
   string s = "ВДКТ";
   int j = f(n - 1, k);
-  k // cout << j << "\n";
-          cout
-      << s[j] << '\n';
+  // k // cout << j << "\n";
+  //         cout
+  //     << s[j] << '\n';
 }
