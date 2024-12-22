@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <numeric>
+#include <set>
 using namespace std;
 using ll = long long;
 
@@ -11,6 +12,7 @@ ll c[N];
 int main() {
   int T;
   cin >> T;
+
   while (T--) {
     ll n, a, b;
     cin >> n >> a >> b;
@@ -19,6 +21,7 @@ int main() {
       cin >> c[i];
       c[i] = c[i] % g;
     }
+
     sort(c, c + n);
     ll ans = c[n - 1] - c[0];
     for (int i = 1; i < n; i++) {
