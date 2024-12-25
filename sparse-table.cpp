@@ -18,17 +18,6 @@ vector<vector<int>> build_sparse(vector<int> arr) {
   // values at indexes
   tbl[0] = arr;
 
-  for (size_t k = 0; k + 1 < maxpow; k++) {
-    for (size_t beg = 0; beg + (1 << (k + 1)) <= arr.size(); beg++) {
-      // 0 => 2
-      // 1 => 4
-      // 2 => 8
-      // 3 => 16
-      // els = 1 << (i + 1)
-      tbl[k + 1][beg] = min(tbl[k][beg], tbl[k][beg + (1 << k)]);
-    }
-  }
-
   return tbl;
 }
 
