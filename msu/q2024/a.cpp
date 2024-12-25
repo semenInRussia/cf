@@ -31,7 +31,7 @@ int main() {
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
-  for (int i = 0; i < n; i++) { // O(n * 178)
+  for (int i = 0; i < n; i++) { // O(178n)
     a[i] = when(a[i]);
   }
 
