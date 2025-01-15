@@ -2,9 +2,8 @@
 #include <algorithm>
 #include <complex>
 #include <iomanip>
-i
 #include <iostream>
-    using namespace std;
+using namespace std;
 
 using C = long double;
 using P = complex<C>;
