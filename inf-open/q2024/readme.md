@@ -10,5 +10,5 @@
 - [f.cpp](./f.cpp) (70)
 - [g.cpp](./g.cpp) (**100**)
 - [h.cpp](./h/h.cpp) (78)
-- [i.cpp](./i.cpp)
+- [i.cpp](./i.cpp) (10)
 
