@@ -20,13 +20,15 @@ struct fenw {
     t.resize(n + 1);
   }
 
-  void add(int i, int v) {
+  void add(int i, int v = +1) {
     sz += v;
     i++;
     for (; i < (int)t.size(); i += i & -i) {
       t[i] += v;
     }
   }
+
+  inline void rem(int i) { add(i, -1); }
 
   // find k: sum(k + 1) == s
   //
