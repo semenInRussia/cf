@@ -10,7 +10,7 @@ using namespace std;
 #pragma GCC optimize("Ofast")
 
 const int N = 203;
-const int K = 1e6;
+const int K = 1e5;
 const int mod = 1e9 + 7;
 int f[N][K];
 

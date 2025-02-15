@@ -1,0 +1,24 @@
+Type=cdir;Create=19981107085215; /
+Type=cdir;Create=19981107085215; /Games
+
+/Games/0ad_0.0.22_amd64.appimage	1 030 321 584	Файл	29 мая 2018 14:00:00
+/Games/battle-for-wesnoth-1.18.3-win.zip	506 219 599	Файл	28 октября 2024 20:45:00
+/Games/endless-sky-v0.10.10.dmg	282 303 434	Файл	26 октября 2024 22:38:00
+/Games/freeciv-gtk3.22-3.1.4-x86_64.appimage	155 636 928	Файл	03 января 2025 00:33:00
+/Games/openttd_1.10.3_amd64.appimage	69 316 648	Файл	27 января 2021 14:41:00
+/Games/super-tux-kart_1.2_amd64.appimage	594 681 896	Файл	22 февраля 2021 14:48:00
+/Games/super-tux-v0.6.3-win64.msi	178 823 737	Файл	23 декабря 2021 01:25:00
+/Games/unknown-horizons-2019.1.214-Setup-VC15-x86.exe	192 179 770	Файл	24 февраля 2019 16:23:00
+
+Type=cdir;Modify=19981107085215; /tmp
+Type=pdir;Modify=19990112030508; ..
+Type=file;Size=25730;Modify=19940728095854; capmux.tar.z
+Type=file;Size=1830;Modify=19940916055648; hatch.c
+Type=file;Size=25624;Modify=19951003165342; MacIP-02.txt
+Type=file;Size=2154;Modify=19950501105033; uar.netbsd.patch
+Type=file;Size=54757;Modify=19951105101754; iptnnladev.1.0.sit.hqx
+Type=file;Size=226546;Modify=19970515023901; melbcs.tif
+Type=file;Size=12927;Modify=19961025135602; tardis.1.6.sit.hqx
+Type=file;Size=17867;Modify=19961025135602; timelord.1.4.sit.hqx
+Type=file;Size=224907;Modify=19980615100045; uar.1.2.3.sit.hqx
+Type=file;Size=1024990;Modify=19980130010322; cap60.pl198.tar.gz

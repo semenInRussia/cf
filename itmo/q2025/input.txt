@@ -1,0 +1,46 @@
+3
+
+2 4 9 red 8
+red X red 1 red 3 yellow 5
+red 5 red 5 red 5 black @
+-> red X BY 1
+<<- 2 green 1 green 3 BY 2
+-> red 1 BY 1
+-> red 5 BY 2
+-> red 5 BY 2
+-> red 5 BY 2
+-> red 3 BY 1
+-> yellow 3 BY 2
+-> yellow 5 BY 1
+
+3 3 16 blue 2
+red # yellow # red 2
+green # blue # green X
+red X yellow # yellow 0
+-> red 2 BY 1
+<<- 1 red # BY 2
+-> red X BY 3
+<<- 2 yellow 1 yellow X BY 1
+-> red # BY 2
+-> red # BY 1
+-> yellow # AND uno BY 3
+-> yellow # BY 1
+-> yellow 0 BY 3
+-> yellow X AND uno BY 1
+-> green X BY 2
+<<- 4 red 1 red 2 blue # blue X BY 1
+-> green # AND uno BY 2
+-> blue # BY 1
+-> blue X BY 1
+<<- 2 red 1 red 2 BY 2
+
+3 2 6 red 7
+black @ black @
+black @ red #
+red X black @
+-> black @ AND uno BY 1
+-> black @ BY 1
+-> black @ AND uno BY 2
+-> black @ AND uno BY 3
+<<- 12 red X blue X green X yellow X red # blue 0 green 7 yellow 2 red 1 black @ blue 2 blue 3 BY 2
+-> red 9 BY 2

@@ -17,8 +17,7 @@ struct fenw {
   int sz, n;
   vector<int> t;
 
-  fenw(int _n) {
-    n = _n;
+  fenw(int _n) : n(_n) {
     sz = 0;
     t.resize(n + 1);
   }
@@ -37,7 +36,7 @@ struct fenw {
     int k = 0;
     for (int l = __lg(n); l >= 0; l--) {
       if (k + (1 << l) <= n && t[k + (1 << l)] < s) {
-        k += (1 << l);
+        k += 1 << l;
         s -= t[k];
       }
     }

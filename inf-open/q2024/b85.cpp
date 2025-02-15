@@ -1,3 +1,5 @@
+
+
 // semenInRussia 2024
 #include <algorithm>
 #include <cassert>
