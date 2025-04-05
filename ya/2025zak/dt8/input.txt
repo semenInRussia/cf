@@ -1,0 +1,24 @@
+
+
+4
+JOJO
+JJOI
+OJOO
+3
+IJOJ
+1 4 O
+2 2 J
+2 4 I
+
+
+
+
+3
+JOI
+JOI
+JOI
+2
+OJI
+1 2 O
+1 1 J
+
