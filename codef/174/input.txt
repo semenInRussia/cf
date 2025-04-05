@@ -1,0 +1,7 @@
+4
+baba
+cc
+ddaa
+acbacddacbca
+acbacd|dacbca
+012345|678901
