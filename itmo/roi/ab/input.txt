@@ -1,0 +1,11 @@
+3 2
+2 3
+RG
+GG
+GR
+
+3 3
+3 4
+RRR
+RRR
+RRR

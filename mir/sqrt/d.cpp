@@ -46,8 +46,9 @@ int main() {
   int n, t;
   cin >> n >> t;
   els.reserve(n);
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < n; i++) {
     cin >> a[i];
+  }
   query q;
   for (int i = 0; i < t; i++) {
     cin >> q.l >> q.r;
@@ -55,28 +56,36 @@ int main() {
     q.idx = i;
     b[q.l / C].push_back(q);
   }
-  for (int g = 0; g * C <= n; g++)
-    sort(b[g].begin(), b[g].end());
   for (int g = 0; g * C <= n; g++) {
-    if (b[g].empty())
+    sort(b[g].begin(), b[g].end());
+  }
+  for (int g = 0; g * C <= n; g++) {
+    if (b[g].empty()) {
       continue;
+    }
     ans = 0;
-    for (auto s : els)
-      used[s] = cnt[s] = 0;
+    for (auto s : els) {
+      used[s] = (cnt[s] = 0);
+    }
     els.clear();
     int l = b[g][0].l, r = b[g][0].r;
-    for (int i = l; i < r; i++)
+    for (int i = l; i < r; i++) {
       add(i);
+    }
     for (auto q : b[g]) {
-      while (l > q.l)
+      while (l > q.l) {
         add(--l);
-      while (l < q.l)
+      }
+      while (l < q.l) {
         rem(l++);
-      while (r < q.r)
+      }
+      while (r < q.r) {
         add(r++);
+      }
       answers[q.idx] = ans;
     }
   }
-  for (int i = 0; i < t; i++)
+  for (int i = 0; i < t; i++) {
     cout << answers[i] << '\n';
+  }
 }
